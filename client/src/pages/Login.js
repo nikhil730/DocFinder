@@ -13,7 +13,7 @@ const Login = () => {
     try {
       dispatch(showLoading());
       const res = await api.post("/api/user/login", values);
-      //window.location.reload();
+      window.location.reload();
       dispatch(hideLoading());
       if (res.data.success) {
         localStorage.setItem("token", res.data.token);
