@@ -3,6 +3,7 @@ const colors = require("colors");
 const morgan = require("morgan");
 const dotenv = require("dotenv");
 const connectDB = require("./config/db");
+const cors = require("cors");
 const { route } = require("./routes/userRoutes");
 
 const app = express();
@@ -16,6 +17,7 @@ connectDB();
 //middelwares
 app.use(express.json());
 app.use(morgan("dev"));
+app.use(cors());
 
 //routes
 app.get("/", (req, res) => {
