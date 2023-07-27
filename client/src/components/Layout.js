@@ -11,8 +11,34 @@ const Layout = ({ children }) => {
   const { user } = useSelector((state) => state.user);
   const location = useLocation();
   console.log(user);
-  const SideBarMenu = user?.isAdmin ? adminMenu : userMenu;
+
+  //doctor menu
+  const doctorMenu = [
+    {
+      name: "Home",
+      path: "/",
+      icon: "fa-solid fa-house-chimney",
+    },
+    {
+      name: "Appointments",
+      path: "/appointments",
+      icon: "fa-sharp fa-solid fa-list",
+    },
+    {
+      name: "Profile",
+      path: `/doctor/profile/${user?._id}`,
+      icon: "fa-solid fa-user",
+    },
+  ];
+
+  //sideBar Menu
+  const SideBarMenu = user?.isAdmin
+    ? adminMenu
+    : user?.isDoctor
+    ? doctorMenu
+    : userMenu;
   console.log(SideBarMenu);
+
   const handleClick = () => {
     console.log("here");
     localStorage.clear();

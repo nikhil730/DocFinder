@@ -121,13 +121,25 @@ const applyDoctorController = async (req, res) => {
 const getAllNotificationController = async (req, res) => {
   try {
     const user = await userModel.findById({ _id: req.body.userId });
-    const seennotification = user.seennotification;
-    const notification = user.notification;
-    console.log(notification);
-    seennotification.push({ ...notification });
+    let seennotification = user.seennotification;
+    let notification = user.notification;
+    //console.log(notification);
+    let seenorder = [];
+    notification.forEach((noti) => {
+      seenorder.push(noti);
+    });
+    seennotification.forEach((noti) => {
+      seenorder.push(noti);
+    });
+    seennotification = seenorder;
+    //seennotification.push({ ...notification });
+    console.log("seen notis.");
+    console.log(seennotification);
     user.notification = [];
-    user.seennotification = notification;
+    user.seennotification = seennotification;
+
     const updatedUser = await user.save();
+    updatedUser.password = undefined;
     res.status(200).send({
       success: true,
       message: "All Notifications are marked as read",
@@ -143,10 +155,34 @@ const getAllNotificationController = async (req, res) => {
   }
 };
 
+//delete all noti callback
+const deleteAllNotificationController = async (req, res) => {
+  try {
+    const user = await userModel.findById({ _id: req.body.userId });
+    const seennotification = user.seennotification;
+    user.seennotification = [];
+    const updatedUser = await user.save();
+    updatedUser.password = undefined;
+    res.status(200).send({
+      success: true,
+      message: "All Read Notifications are deleted",
+      data: updatedUser,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: `Error in deleting Notifications`,
+      error,
+    });
+  }
+};
+
 module.exports = {
   loginController,
   registerController,
   authController,
   applyDoctorController,
   getAllNotificationController,
+  deleteAllNotificationController,
 };
