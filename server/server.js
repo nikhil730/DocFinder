@@ -18,6 +18,9 @@ app.use(express.json());
 app.use(morgan("dev"));
 
 //routes
+app.get("/", (req, res) => {
+  res.send("server runing");
+});
 app.use("/api/user", require("./routes/userRoutes"));
 app.use("/api/admin", require("./routes/adminRoutes"));
 app.use("/api/doctor", require("./routes/doctorRoutes"));
