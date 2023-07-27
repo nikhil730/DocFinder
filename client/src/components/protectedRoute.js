@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Navigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import axios from "axios";
+import api from "../axios/axios";
 import { hideLoading, showLoading } from "../redux/features/alertSlice";
 import { setUser } from "../redux/features/userSlice";
 
@@ -14,7 +14,7 @@ const ProtectedRoute = ({ children }) => {
   const getUser = async () => {
     try {
       dispatch(showLoading());
-      const res = await axios.post(
+      const res = await api.post(
         "/api/user/getUserData",
         {
           token: localStorage.getItem("token"),
