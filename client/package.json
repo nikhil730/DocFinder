@@ -1,8 +1,9 @@
 {
   "name": "client",
-  "proxy": "https://docfinder-backend.onrender.com",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://docfinder-wwjg.onrender.com",
+  "proxy": "https://docfinder-backend.onrender.com",
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",
     "@testing-library/jest-dom": "^5.16.5",
