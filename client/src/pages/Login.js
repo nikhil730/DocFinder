@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import { showLoading, hideLoading } from "../redux/features/alertSlice";
 
 const Login = () => {
+  axios.defaults.baseURL = "https://docfinder-backend.onrender.com";
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const onFinishHandler = async (values) => {
