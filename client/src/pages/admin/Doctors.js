@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Layout from "./../../components/Layout";
-import axios from "axios";
+import api from "../../axios/axios";
 import { message, Table } from "antd";
 
 const Doctors = () => {
@@ -8,7 +8,7 @@ const Doctors = () => {
   //getUsers
   const getDoctors = async () => {
     try {
-      const res = await axios.get("/api/admin/getAllDoctors", {
+      const res = await api.get("/api/admin/getAllDoctors", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -25,7 +25,7 @@ const Doctors = () => {
   const handleAccountStatus = async (record, status) => {
     try {
       console.log(record);
-      const res = await axios.post(
+      const res = await api.post(
         "/api/admin/changeAccountStatus",
         { doctorId: record._id, userId: record.userId, status: status },
         {

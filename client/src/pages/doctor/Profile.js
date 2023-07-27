@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Layout from "./../../components/Layout";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import axios from "axios";
+import api from "../../axios/axios";
 
 const Profile = () => {
   const { user } = useSelector((state) => state.user);
@@ -16,7 +16,7 @@ const Profile = () => {
       } else {
         console.log("dif");
       }
-      const res = await axios.post(
+      const res = await api.post(
         "/api/doctor/getDoctorInfo",
         {
           userId: params.id,

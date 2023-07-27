@@ -1,12 +1,13 @@
 import React from "react";
 import { useEffect } from "react";
-import axios from "axios";
 import Layout from "../components/Layout";
+import api from "../axios/axios";
+
 const HomePage = () => {
   //login user data
   const getUserData = async () => {
     try {
-      const res = await axios.post(
+      const res = await api.post(
         "/api/user/getUserData",
         {},
         {

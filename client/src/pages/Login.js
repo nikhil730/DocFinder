@@ -2,18 +2,17 @@ import React from "react";
 import "../styles/RegisterStyles.css";
 import { Form, Input, message } from "antd";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
 import { useDispatch } from "react-redux";
 import { showLoading, hideLoading } from "../redux/features/alertSlice";
+import api from "../axios/axios";
 
 const Login = () => {
-  axios.defaults.baseURL = "https://docfinder-backend.onrender.com";
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const onFinishHandler = async (values) => {
     try {
       dispatch(showLoading());
-      const res = await axios.post("/api/user/login", values);
+      const res = await api.post("/api/user/login", values);
       //window.location.reload();
       dispatch(hideLoading());
       if (res.data.success) {

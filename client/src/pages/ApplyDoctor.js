@@ -4,8 +4,9 @@ import { Col, Form, Input, Row, TimePicker, message } from "antd";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { showLoading, hideLoading } from "../redux/features/alertSlice";
-import axios from "axios";
 import moment from "moment";
+import api from "../axios/axios";
+
 const ApplyDoctor = () => {
   const { user } = useSelector((state) => state.user);
 
@@ -16,7 +17,7 @@ const ApplyDoctor = () => {
     console.log(values);
     try {
       dispatch(showLoading());
-      const res = await axios.post(
+      const res = await api.post(
         "/api/user/apply-doctor",
         {
           ...values,
