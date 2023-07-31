@@ -30,6 +30,7 @@ const Register = () => {
   return (
     <>
       <div className="form-container">
+        <h1 className="heading">Doc Finder</h1>
         <Form
           layout="vertical"
           onFinish={onFinishHandler}

@@ -1,8 +1,18 @@
+.heading{
+  color: white;
+    text-align: center;
+    padding: 18px;
+    margin-bottom: 35px;
+    background-color: rgb(51, 1, 1);
+    border-radius: 14%;
+    box-shadow: 3px 3px 3px grey;
+}
 .form-container {
     display: flex;
     align-items: center;
     justify-content: center;
     height: 100vh;
+    flex-direction: column;
   }
   
   .register-form {

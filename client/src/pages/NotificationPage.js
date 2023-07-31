@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { showLoading, hideLoading } from "../redux/features/alertSlice";
 import { useNavigate } from "react-router-dom";
 import api from "../axios/axios";
+import "../styles/Notification.css";
 
 const NotificationPage = () => {
   const dispatch = useDispatch();
@@ -76,16 +77,18 @@ const NotificationPage = () => {
               Mark All Read
             </h4>
           </div>
-          {user?.notification.map((notificationMgs) => (
-            <div className="card" style={{ cursor: "pointer" }}>
-              <div
-                className="card-text"
-                onClick={() => navigate(notificationMgs.onClickPath)}
-              >
-                {notificationMgs.message}
+          <ul>
+            {user?.notification.map((notificationMgs) => (
+              <div className="card noti" style={{ cursor: "pointer" }}>
+                <div
+                  className="card-text"
+                  onClick={() => navigate(notificationMgs.onClickPath)}
+                >
+                  <li>{notificationMgs.message}</li>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </ul>
         </Tabs.TabPane>
         <Tabs.TabPane tab="Read" key={1}>
           <div className="d-flex justify-content-end">

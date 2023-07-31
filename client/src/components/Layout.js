@@ -10,7 +10,7 @@ const Layout = ({ children }) => {
   const navigate = useNavigate();
   const { user } = useSelector((state) => state.user);
   const location = useLocation();
-  console.log(user);
+  //console.log(user);
 
   //doctor menu
   const doctorMenu = [
@@ -21,7 +21,7 @@ const Layout = ({ children }) => {
     },
     {
       name: "Appointments",
-      path: "/appointments",
+      path: "/doctor-appointments",
       icon: "fa-sharp fa-solid fa-list",
     },
     {
@@ -37,7 +37,7 @@ const Layout = ({ children }) => {
     : user?.isDoctor
     ? doctorMenu
     : userMenu;
-  console.log(SideBarMenu);
+  //console.log(SideBarMenu);
 
   const handleClick = () => {
     console.log("here");
