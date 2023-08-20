@@ -22,7 +22,7 @@ export const userMenu = [
   {
     name: "Medicines",
     path: "/medicines",
-    icon: "fa-thin fa-tablets",
+    icon: "fa-solid fa-tablets",
   },
 
   //   {
