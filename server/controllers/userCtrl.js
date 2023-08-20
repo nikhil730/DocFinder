@@ -357,7 +357,7 @@ const removeMedicineController = async (req, res) => {
     let newmed = [];
     user.medicines.forEach((med) => {
       if (med.Id !== medId) {
-        newmed.push_back(med);
+        newmed.push(med);
       }
     });
     user.medicines = newmed;
