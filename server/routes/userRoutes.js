@@ -10,6 +10,9 @@ const {
   bookingAvailabilityController,
   bookeAppointmnetController,
   userAppointmentsController,
+  addMedicineController,
+  getMedicineController,
+  removeMedicineController,
 } = require("../controllers/userCtrl");
 const authMiddleware = require("../middlewares/authMiddleware");
 
@@ -55,6 +58,15 @@ router.post(
 
 //BOOK APPOINTMENT
 router.post("/book-appointment", authMiddleware, bookeAppointmnetController);
+
+//Add Medicine
+router.post("/addMedicine", authMiddleware, addMedicineController);
+
+//Add Medicine
+router.post("/removeMedicine", authMiddleware, removeMedicineController);
+
+//Get Medicine
+router.post("/getMedicine", authMiddleware, getMedicineController);
 
 //Appointments List
 router.get("/user-appointments", authMiddleware, userAppointmentsController);

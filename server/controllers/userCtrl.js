@@ -299,6 +299,83 @@ const userAppointmentsController = async (req, res) => {
   }
 };
 
+const addMedicineController = async (req, res) => {
+  try {
+    const user = await userModel.findOne({ _id: req.body.userId });
+    const name = req.body.medicinename;
+    //console.log(req.body.timings);
+    let expiry = moment(req.body.timings).format("MM:YYYY");
+    expiry = moment(expiry, "MM:YYYY").toISOString();
+    const newId = Math.random();
+    console.log(newId);
+    const med = {
+      Id: newId,
+      name: req.body.medicineName,
+      expiry: req.body.timings,
+    };
+    user.medicines.push(med);
+    user.save();
+
+    console.log(req.body);
+    res.status(200).send({
+      success: true,
+      message: `Medicine Added successfully`,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      error,
+      message: "Error In Adding Medicine",
+    });
+  }
+};
+
+const getMedicineController = async (req, res) => {
+  try {
+    const user = await userModel.findOne({ _id: req.body.userId });
+    const med = user.medicines;
+    res.status(200).send({
+      success: true,
+      message: `Fetched medicines Successfully`,
+      data: med,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      error,
+      message: "Error In Getting Medicines",
+    });
+  }
+};
+
+const removeMedicineController = async (req, res) => {
+  try {
+    const user = await userModel.findOne({ _id: req.body.userId });
+    const medId = req.body.Id;
+    let newmed = [];
+    user.medicines.forEach((med) => {
+      if (med.Id !== medId) {
+        newmed.push_back(med);
+      }
+    });
+    user.medicines = newmed;
+    user.save();
+    res.status(200).send({
+      success: true,
+      message: `Medicine Removed Successfully`,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      error,
+      message: "Error In Removing Medicine",
+    });
+  }
+};
+
 module.exports = {
   loginController,
   registerController,
@@ -310,4 +387,7 @@ module.exports = {
   bookingAvailabilityController,
   bookeAppointmnetController,
   userAppointmentsController,
+  addMedicineController,
+  getMedicineController,
+  removeMedicineController,
 };

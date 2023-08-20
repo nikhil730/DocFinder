@@ -17,6 +17,7 @@ const DoctorAppointments = () => {
         },
       });
       if (res.data.success) {
+        console.log(res.data.data);
         setAppointments(res.data.data);
       }
     } catch (error) {
