@@ -26,7 +26,7 @@ export const userMenu = [
   },
 
   //   {
-  //     name: "Logou",
+  //     name: "Logo",
   //     path: "/logout",
   //     icon: "fa-solid fa-right-from-bracket",
   //   },
